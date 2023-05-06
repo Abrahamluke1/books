@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Dashboard - Admin
+    link(rel='stylesheet', href='/styles/dashboard.css')
+
+  body
+    div.container
+      div.top-bar
+        a.button.add-book-button(href='/admin/addbook', style=' float: right;') Add Book
+        a.button.logout-button(href='/admin/logout') Logout
+
+        
+      h1 Dashboard - Admin
+      table
+        thead
+          tr
+            th ID
+            th Title
+            th Author
+            th Genre
+            th Cover
+            th Actions
+        tbody
+          each book in books
+            tr
+              td= book.id
+              td= book.title
+              td= book.author
+              td= book.genre
+              td
+                img(src=book.cover, alt='Cover Image', style='max-width: 100px')
+              td
+                a.button.edit-button(href=`/admin/books/edit/${book.id}`) Edit
+                form.delete-form(method='POST', action=`/admin/books/delete/${book.id}`)
+                  button.button.delete-button(type='submit') Delete

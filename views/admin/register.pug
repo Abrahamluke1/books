@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Register - Admin
+    link(rel='stylesheet', href='/styles/admin-register.css')
+
+
+  body
+    div.container
+      h1 Register - Admin
+      form(action='/admin/register', method='post')
+        div.form-control
+          label(for='email') Email
+          input(type='email', name='email', required)
+        div.form-control
+          label(for='password') Password
+          input(type='password', name='password', required)
+        div.form-control
+          label(for='confirm-password') Confirm Password
+          input(type='password', name='confirm-password', required)
+        input(type='hidden', name='isAdmin', value='true')
+        button(type='submit') Register
+
+      p Already have an account? 
+        a(href='/admin/login') Login

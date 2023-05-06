@@ -4,67 +4,22 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Login Page
-    style.
-      body {
-        background-color: #f5f5f5;
-        font-family: Arial, sans-serif;
-      }
-      
-      .login-box {
-        background-color: #fff;
-        width: 350px;
-        margin: 100px auto;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-      }
-      
-      h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        text-align: center;
-      }
-      
-      label {
-        display: block;
-        font-size: 16px;
-        margin-bottom: 5px;
-      }
-      
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        height: 40px;
-        padding: 5px 10px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: none;
-        margin-bottom: 20px;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-      }
-      
-      button[type="submit"] {
-        background-color: #4CAF50;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      
-      button[type="submit"]:hover {
-        background-color: #3e8e41;
-      }
+    link(rel='stylesheet', href='/styles/login.css')
+
+    
   
   body
     div(class="login-box")
       h2 Login
       form(action="/login", method="POST")
-        label(for="username") Username
-        input(type="text", id="username", name="username", required)
+        label(for="email") Email
+        input(type="text", id="email", name="email", required)
         label(for="password") Password
         input(type="password", id="password", name="password", required)
+        if message
+          p(style="color: red") #{message}
         button(type="submit") Login
       p Don't have an account? 
         a(href="/register") Register here.
+
+

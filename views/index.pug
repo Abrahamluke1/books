@@ -1,208 +1,153 @@
+//- doctype html
+//- html(lang="en")
+//-   head
+//-     meta(charset="UTF-8")
+//-     title Audio Books
+//-     link(rel='stylesheet', href='/styles/index.css')
+//-     script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+//-   body
+//-     header.top-bar
+//-       h1.logo Audio books
+//-       ul.menu
+//-         li
+//-           a#show-home(href="#") Home
+//-         li
+//-           a#show-biography(href="#") Biography
+//-         li
+//-           a#show-horror(href="#") Horror 
+//-         li
+//-           a#show-fantasy(href="#") Fantasy
+//-       div.search
+//-         input(type="text" placeholder="Search")
+//-         a.login(href="/logout") Logout
+//-     script.
+//-       $(document).ready(function() {
+//-         $('.tray-header, .tray-container').hide();
+//-         $('.tray-header, .tray-container').show();
+
+//-         $('#show-home').click(function() {
+//-           $('.tray-header, .tray-container').show();
+//-         });
+
+//-         $('#show-biography').click(function() {
+//-           $('.tray-header, .tray-container').hide();
+//-           $('#biography-header, #biography-container').show();
+//-         });
+
+//-         $('#show-horror').click(function() {
+//-           $('.tray-header, .tray-container').hide();
+//-           $('#horror-header, #horror-container').show();
+//-         });
+
+//-         $('#show-fantasy').click(function() {
+//-           $('.tray-header, .tray-container').hide();
+//-           $('#fantasy-header, #fantasy-container').show();
+//-         });
+//-       });
+
+//-     div.tray-header(id='biography-header')
+//-       h4 Biography
+
+//-     div.tray-container(id='biography-container')
+//-       each book in biographyBooks
+//-         div.tray
+//-           div.label #{book.title}
+//-           img(src=book.cover, alt='Cover image')
+
+//-     div.tray-header(id='horror-header')
+//-       h4 Horror
+
+//-     div.tray-container(id='horror-container')
+//-       each book in horrorBooks
+//-         div.tray
+//-           div.label #{book.title}
+//-           img(src=book.cover, alt='Cover image')
+
+//-     div.tray-header(id='fantasy-header')
+//-       h4 Fantasy
+
+//-     div.tray-container(id='fantasy-container')
+//-       each book in fantasyBooks
+//-         div.tray
+//-           div.label #{book.title}
+//-           img(src=book.cover, alt='Cover image')
+
 doctype html
 html(lang="en")
   head
     meta(charset="UTF-8")
     title Audio Books
-    style.
-      // (Your CSS styles)
-
-         /* Global Styles */
-      * {
-        box-sizing: border-box;
-      }
-      
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-      }
-      
-      /* Top Bar Styles */
-      .top-bar {
-        background-color: #141414;
-        color: #fff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 40px;
-      }
-      
-      .logo {
-        font-size: 1.8rem;
-        font-weight: bold;
-        margin: 0;
-      }
-      
-      .menu {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      
-      .menu li {
-        margin-left: 30px;
-      }
-      
-      .menu a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: 600;
-      }
-      
-      .search {
-        display: flex;
-        align-items: center;
-      }
-      
-      .search input[type="text"] {
-        height: 30px;
-        width: 300px;
-        border: none;
-        border-radius: 5px;
-        padding: 5px;
-        font-size: 1.2rem;
-        margin-right: 10px;
-      }
-      
-      .login {
-        color: #fff;
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-right: 10px;
-        text-decoration: none;
-      }
-      
-      /* Slideshow Styles */
-      .slideshow {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        margin-top: 50px;
-      }
-      
-      .slide {
-        margin: 10px;
-        text-align: center;
-      }
-      
-      .slide img {
-        max-width: 100%;
-        height: auto;
-      }
-      
-      .slide h2 {
-        margin-top: 10px;
-        font-size: 1.5rem;
-        font-weight: bold;
-      }
-      
-      .slide p {
-        margin-top: 5px;
-        font-size: 1.2rem;
-        font-weight: 600;
-      }
-
-       /* CSS for tray container */
-      .tray-container {
-        display: flex;
-        overflow-x: scroll;
-        -webkit-overflow-scrolling: touch;
-        padding: 10px;
-      }
-
-      .tray-container::-webkit-scrollbar {
-        height: 10px;
-        background-color: #F9F9F9;
-      }
-
-      .tray-container::-webkit-scrollbar-thumb {
-        background-color: #B2B2B2;
-        border-radius: 10px;
-      }
-
-      .tray-container .tray {
-        flex-shrink: 0;
-        margin-right: 40px;
-        width: 200px;
-        height: 300px;
-        border-radius: 5px;
-        overflow: hidden;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-        cursor: pointer;
-        position: relative;
-      }
-
-      .tray-container .tray img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease-out;
-      }
-
-      .tray-container .tray:hover img {
-        transform: scale(1.1);
-      }
-
-      .tray-container .tray .label {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        font-size: 16px;
-        font-weight: bold;
-        color: white;
-        background-color: rgba(0, 0, 0, 0.7);
-        padding: 5px;
-        border-radius: 5px;
-
-      }
-
-
-
-      .tray-container .tray .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 24px;
-        opacity: 0;
-        transition: opacity 0.3s ease-out;
-      }
-
-      .tray-container .tray:hover .overlay {
-        opacity: 1;
-      }
-
+    link(rel='stylesheet', href='/styles/index.css')
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
   body
     header.top-bar
       h1.logo Audio books
       ul.menu
         li
-          a(href="#") Home
+          a#show-home(href="#") Home
         li
-          a(href="#") Biography
+          a#show-biography(href="#") Biography
         li
-          a(href="#") Horror 
+          a#show-horror(href="#") Horror 
         li
-          a(href="#") Fantasy
+          a#show-fantasy(href="#") Fantasy
       div.search
         input(type="text" placeholder="Search")
-        a.login(href="/login") Login
+        a.login(href="/logout") Logout
+    script.
+      $(document).ready(function() {
+        $('.tray-header, .tray-container').hide();
+        $('.tray-header, .tray-container').show();
 
-    div.tray-header
-      h4 TOP PICKS
+        $('#show-home').click(function() {
+          $('.tray-header, .tray-container').show();
+        });
 
-    div(class='tray-container')
-   
-      each base64Image, index in imageData
-        div(class='tray')
-          div(class='label') Trending #{index + 1 }
-          img(src='data:image/jpeg;base64,' + base64Image)
-          div(class='overlay') Popular #{index + 1 }
+        $('#show-biography').click(function() {
+          $('.tray-header, .tray-container').hide();
+          $('#biography-header, #biography-container').show();
+        });
+
+        $('#show-horror').click(function() {
+          $('.tray-header, .tray-container').hide();
+          $('#horror-header, #horror-container').show();
+        });
+
+        $('#show-fantasy').click(function() {
+          $('.tray-header, .tray-container').hide();
+          $('#fantasy-header, #fantasy-container').show();
+        });
+
+        // Add this code to handle book card click event
+        $(".book-card").on("click", function () {
+          const bookId = $(this).data("book-id");
+          window.location.href = `/books/${bookId}`;
+        });
+      });
+
+    div.tray-header(id='biography-header')
+      h4 Biography
+
+    div.tray-container(id='biography-container')
+      each book in biographyBooks
+        div.tray.book-card(data-book-id=book.id) 
+          div.label #{book.title}
+          img(src=book.cover, alt='Cover image')
+
+    div.tray-header(id='horror-header')
+      h4 Horror
+
+    div.tray-container(id='horror-container')
+      each book in horrorBooks
+        div.tray.book-card(data-book-id=book.id)
+          div.label #{book.title}
+          img(src=book.cover, alt='Cover image')
+
+    div.tray-header(id='fantasy-header')
+      h4 Fantasy
+
+    div.tray-container(id='fantasy-container')
+      each book in fantasyBooks
+        div.tray.book-card(data-book-id=book.id) 
+          div.label #{book.title}
+          img(src=book.cover, alt='Cover image')

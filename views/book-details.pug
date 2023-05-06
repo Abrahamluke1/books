@@ -1,0 +1,60 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title #{book.title} - Audio Books
+    link(rel='stylesheet', href='/styles/book-details.css')
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+  body
+    div.book-details
+      div.left-side
+        img.book-cover(src=book.cover, alt='Cover image')
+        div.book-info
+          h2.book-title #{book.title}
+          h3.author-name Author: #{book.author}
+          h4.genre Genre: #{book.genre}
+      div.right-side
+        h3.book-description #{book.description}
+        div.audio-player
+          audio#custom-audio(src=book.audio, preload='metadata')
+          button#play-pause Play
+          span#current-time 00:00
+          span.time-divider /
+          span#duration 00:00
+
+    script.
+      $(document).ready(function() {
+        var audioElement = document.getElementById('custom-audio');
+        var playPauseButton = document.getElementById('play-pause');
+        var currentTimeDisplay = document.getElementById('current-time');
+        var durationDisplay = document.getElementById('duration');
+
+        audioElement.addEventListener('loadedmetadata', function() {
+          var duration = audioElement.duration;
+          durationDisplay.textContent = formatTime(duration);
+        });
+
+        audioElement.addEventListener('timeupdate', function() {
+          currentTimeDisplay.textContent = formatTime(audioElement.currentTime);
+        });
+
+        playPauseButton.addEventListener('click', function() {
+          if (audioElement.paused) {
+            audioElement.play();
+            playPauseButton.textContent = 'Pause';
+          } else {
+            audioElement.pause();
+            playPauseButton.textContent = 'Play';
+          }
+        });
+
+        audioElement.addEventListener('ended', function() {
+          playPauseButton.textContent = 'Play';
+        });
+
+        function formatTime(time) {
+          var minutes = Math.floor(time / 60);
+          var seconds = Math.floor(time % 60);
+          return ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+        }
+      });
