@@ -139,13 +139,14 @@ ALTER TABLE `reviews`
 
 --
 -- Indexes for table `users`
---
+-- To set the primay key for database
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Constraints for dumped tables
 --
+-- some reviews  needs to be added
 
 --
 -- Constraints for table `reviews`
