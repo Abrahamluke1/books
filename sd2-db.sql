@@ -53,7 +53,7 @@ INSERT INTO `audio_books` (`id`, `title`, `author`, `genre`, `language`, `descri
 -- --------------------------------------------------------
 
 --
--- Table structure for table `purchases`
+-- Table structure for table `purchases` by users
 --
 
 CREATE TABLE `purchases` (
@@ -75,7 +75,7 @@ INSERT INTO `purchases` (`id`, `user_id`, `audio_book_id`, `purchased_at`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviews`
+-- Table structure for table `reviews`by users
 --
 
 CREATE TABLE `reviews` (
